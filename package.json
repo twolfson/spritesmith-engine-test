@@ -1,0 +1,36 @@
+{
+  "name": "spritesmith-engine-test",
+  "description": "Common test files for all Spritesmith engines",
+  "version": "0.1.0",
+  "homepage": "https://github.com/twolfson/spritesmith-engine-test",
+  "author": {
+    "name": "Todd Wolfson",
+    "email": "todd@twolfson.com",
+    "url": "http://twolfson.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/twolfson/spritesmith-engine-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/twolfson/spritesmith-engine-test/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/twolfson/spritesmith-engine-test/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/spritesmith-engine-test",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.17"
+  },
+  "keywords": [
+    "spritesmith",
+    "test",
+    "engine"
+  ]
+}
