@@ -42,7 +42,28 @@ engine.createCanvas(width, height, cb);
 
 ### canvas
 Each `canvas` must have and implement the following methods:
+
 ```js
+canvas.addImage(img, x, y);
+/**
+ * Add an image at the specified location (upper-left corner of image matches x,y)
+ * You will not need to worry about overlapping images.
+ * It is a bit inconsistent for this to not be asynchronous but any async can be done in export.
+ * @param {Object} img Image instance created via `engine.createImages`
+ * @param {Number} x Horizontal coordinate to position left edge of image
+ * @param {Number} y Vertical coordinate to position top edge of image
+ */
+```
+
+```js
+canvas['export'](options, cb);
+/**
+ * Export canvas to an image with dimensions from `engine.createCanvas` and images at positions from `canvas.addImage`
+ * @param {Object} options Modifiers to indicate how to export (e.g. {format: 'png'} would produce a `png` over a `jpeg`)
+ * @param {Function} cb
+ * @callback {null|Object} err Callback with an error if there was one, otherwise null
+ * @callback {String} result Binary encoded string of output image
+ */
 ```
 
 ## Using the module
