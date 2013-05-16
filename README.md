@@ -58,8 +58,8 @@ canvas.addImage(img, x, y);
 ```js
 canvas['export'](options, cb);
 /**
- * Export canvas to an image with dimensions from `engine.createCanvas` and images at positions from `canvas.addImage`
- * @param {Object} options Modifiers to indicate how to export (e.g. {format: 'png'} would produce a `png` over a `jpeg`)
+ * Export an image with dimensions from `engine.createCanvas` and imgs/positions from `canvas.addImage`
+ * @param {Object} options Modifiers to indicate how to export (e.g. {format: 'png'} to produce a `png`)
  * @param {Function} cb
  * @callback {null|Object} err Callback with an error if there was one, otherwise null
  * @callback {String} result Binary encoded string of output image
