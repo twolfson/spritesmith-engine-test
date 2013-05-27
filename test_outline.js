@@ -12,5 +12,9 @@ module.exports = {
       'does not crash': true,
       'returns an image': true
     }
+  },
+  // DEV: This is testing an edge case of phantomjssmith
+  'interpretting a large image': {
+    'gathers proper image size': true
   }
 };

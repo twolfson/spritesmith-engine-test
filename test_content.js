@@ -57,6 +57,27 @@ module.exports = {
     this.height = 16 * 500;
     this.coordinateArr = coordinateArr;
   },
+  // TODO: Combine this with first assertion
+  'interpretting a large image': function (done) {
+    // Save expected stats for later
+    this.width = 800;
+    this.height = 600;
+
+    // Create an image and save it for later
+    var filepath = __dirname + '/test_sprites/800.png',
+        that = this;
+    this.smith.createImages([filepath], function (err, imgs) {
+      // Fallback images, save image, and callback
+      imgs = imgs || [];
+      that.img = imgs[0];
+      done(err);
+    });
+  },
+  // TODO: Combine this with first assertion
+  'gathers proper image size': function () {
+    expect(this.img).to.have.property('height', this.height);
+    expect(this.img).to.have.property('width', this.width);
+  },
   // TODO: Totally can flatten this out with doubleshot ;)
   'rendering them into a canvas': function (done) {
     var that = this,
