@@ -1,4 +1,4 @@
-# spritesmith-engine-test
+# spritesmith-engine-test [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
 
 Common test suite and specification for all Spritesmith engines
 
