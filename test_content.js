@@ -2,11 +2,12 @@ var fs = require('fs'),
     path = require('path'),
     async = require('async'),
     expect = require('chai').expect,
-    imageDir = path.join(__dirname, 'test_sprites');
+    config = require('./config'),
+    imageDir = config.imageDir;
 module.exports = {
   'interpretting an image file': function (done) {
     // Create an image and save it for later
-    var filepath = __dirname + '/test_sprites/sprite1.png',
+    var filepath = config.singleImage,
         that = this;
     this.smith.createImages([filepath], function (err, imgs) {
       // Fallback images, save image, and callback
@@ -20,11 +21,7 @@ module.exports = {
     expect(this.img).to.have.property('width', 50);
   },
   'parsing multiple images': function () {
-    this.images = [
-      path.join(imageDir, 'sprite1.png'),
-      path.join(imageDir, 'sprite2.jpg'),
-      path.join(imageDir, 'sprite3.png')
-    ];
+    this.images = config.multipleImages;
     this.width = 100;
     this.height = 300;
     this.coordinateArr = [{
@@ -42,7 +39,7 @@ module.exports = {
     // Create and save an array of 500 images
     var images = [],
         coordinateArr = [],
-        imagePath = path.join(imageDir, '16.jpg'),
+        imagePath = config.repeatingImage,
         i = 0,
         len = 500;
     for (; i < len; i++) {
@@ -64,7 +61,7 @@ module.exports = {
     this.height = 600;
 
     // Create an image and save it for later
-    var filepath = __dirname + '/test_sprites/800.png',
+    var filepath = config.largeImage,
         that = this;
     this.smith.createImages([filepath], function (err, imgs) {
       // Fallback images, save image, and callback
