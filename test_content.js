@@ -108,6 +108,11 @@ module.exports = {
     var actualImage = this.result,
         matchesAnImage = false;
 
+    // Allow for debugging
+    if (process.env.TEST_DEBUG) {
+      fs.writeFileSync('debug.png', actualImage, 'binary');
+    }
+
     // ANTI-PATTERN: Looping over set without identifiable lines for stack traces
     this.expectedFilepaths.forEach(function testAgainstExpected (filepath) {
       if (!matchesAnImage) {
