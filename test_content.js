@@ -49,23 +49,6 @@ module.exports = {
     expect(this.img).to.have.property('height', this.height);
     expect(this.img).to.have.property('width', this.width);
   },
-  // TODO: Totally can flatten this out with doubleshot ;)
-  'rendering them into a canvas': function (done) {
-        // Add each image
-        var coordinatesArr = that.coordinateArr;
-        imgs.forEach(function (img, i) {
-          var coordinates = coordinatesArr[i];
-          canvas.addImage(img, coordinates.x, coordinates.y);
-        }, canvas);
-
-        // Export canvas
-        canvas['export']({format: 'png'}, function (err, result) {
-          that.result = result;
-          done(err);
-        });
-      });
-    });
-  },
   'can output an image':  function () {
     // Assert the actual image is the same expected
     var actualImage = this.result,
