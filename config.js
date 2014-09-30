@@ -1,8 +1,11 @@
-var path = require('path'),
-    imageDir = path.join(__dirname, 'test_sprites');
+// Load in dependencies
+var path = require('path');
+
+// Define and export common paths
+var imageDir = path.join(__dirname, 'test_sprites');
 module.exports = {
   imageDir: imageDir,
-  singleImage: __dirname + '/test_sprites/sprite1.png',
+  singleImage: path.join(__dirname, '/test_sprites/sprite1.png'),
 
   multipleImages: [
     path.join(imageDir, 'sprite1.png'),
