@@ -1,9 +1,13 @@
-var fs = require('fs'),
-    path = require('path'),
-    async = require('async'),
-    expect = require('chai').expect,
-    config = require('./config'),
-    imageDir = config.imageDir;
+// Load in dependencies
+var fs = require('fs');
+var path = require('path');
+var async = require('async');
+var expect = require('chai').expect;
+var config = require('./config');
+
+// Localize `imageDir` for reuse
+var imageDir = config.imageDir;
+
 module.exports = {
   'interpretting an image file': function (done) {
     // Create an image and save it for later
