@@ -1,9 +1,10 @@
 # spritesmith-engine-test [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
 
-Common test suite and specification for all Spritesmith engines
+Common test suite and specification for all [spritesmith][] engines
 
 These files were written for usage with [doubleshot][doubleshot].
 
+[spritesmith]: https://github.com/Ensighten/spritesmith
 [doubleshot]: https://github.com/twolfson/doubleshot
 
 ## Specification
@@ -108,6 +109,6 @@ doubleshot
 ```
 
 ## License
-Copyright (c) 2013 Todd Wolfson
+Copyright (c) 2013-2014 Todd Wolfson
 
 Licensed under the MIT license.
