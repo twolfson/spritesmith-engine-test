@@ -104,7 +104,7 @@ module.exports = {
       });
     });
   },
-  'can output an image':  function () {
+  'can output an image':  function (done) {
     // Assert the actual image is the same expected
     var actualImage = this.result;
 
@@ -113,10 +113,25 @@ module.exports = {
       fs.writeFileSync('debug.png', actualImage, 'binary');
     }
 
-    // Compare the pixels
-    var actualPixels = getPixels(actualImage);
-    var expectedPixels = getPixels(config.expectedMultipleImage);
-    expect(actualPixels).to.deep.equal(expectedPixels);
+    // Load actual pixels
+    getPixels(actualImage, 'image/png', function loadedActualPixels (err, actualPixels) {
+      // If there was an error, exit early
+      if (err) {
+        return done(err);
+      }
+
+      // Load expected pixels
+      getPixels(config.expectedMultipleImage, 'image/png', function loadedExpectedPixels (err, expectedPixels) {
+        // If there was an error, exit early
+        if (err) {
+          return done(err);
+        }
+
+        // Compare pixels and callback
+        expect(actualPixels).to.deep.equal(expectedPixels);
+        done();
+      });
+    });
   },
   'does not crash': function () {
     // Would have thrown
