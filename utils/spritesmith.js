@@ -31,16 +31,20 @@ exports._createCanvas = function (width, height) {
   });
 };
 
-exports._addImages = function () {
-  before(function createCanvasFn (done) {
-    // Create and save our canvas
-    var that = this;
-    smith.createCanvas(that.width, that.height, function saveCanvas (err, canvas) {
-      that.canvas = canvas;
-      done(err);
+exports._addImages = function (coordinateArr) {
+  before(function addImagesFn () {
+    // Assert we have images, a canvas, and the proper amount of items
+    var canvas = this.canvas;
+    var imgs = this.imgs;
+    assert(canvas, '`this.canvas` was not defined. Please verify `spritesmithUtils._createCanvas` has been run');
+    assert(imgs, '`this.imgs` was not defined. Please verify `spritesmithUtils.interpretImages` has been run');
+    assert.strictEqual(imgs.length, coordinatesArr.length, 'Expected: ' + imgs.length + ' === ' + coordinatesArr.length +
+      '. `imgs.length` to equal `coordinatesArr.length` for `spritesmithUtils._addImages`');
+
+    // Add the images based on an array mapping
+    imgs.forEach(function (img, i) {
+      var coordinates = coordinatesArr[i];
+      canvas.addImage(img, coordinates.x, coordinates.y);
     });
-  });
-  after(function cleanupCanvas () {
-    delete this.canvas;
   });
 };
