@@ -19,14 +19,36 @@ function spritesmithEngineTest(params) {
   // Define our tests
   describe(params.engineName, function () {
     describe('interpretting an image file', function () {
-      spritesmithUtils.interpretImage([config.singleImage]);
+      spritesmithUtils.interpretImages([config.singleImage]);
 
       it('gathers statistics on an image file', function () {
+        // Fallback images and grab first one
+        var imgs = this.imgs || [];
+        var img = imgs[0];
 
+        // Assert against image
+        expect(img).to.have.property('height', 50);
+        expect(img).to.have.property('width', 50);
       });
     });
+
     describe('parsing multiple images', function () {
+      spritesmithUtils.interpretImages([config.multipleImages]);
+
       describe('rendering them into a canvas', function () {
+        spritesmithUtils.renderCanvas({
+          width: 100,
+          height: 300,
+          coordinateArr: [
+            {x: 0, y: 0},
+            {x: 0, y: 50},
+            {x: 0, y: 100}
+          ],
+          exportParams: {
+            format: 'png'
+          }
+        });
+
         it('can output an image', function () {
 
         });

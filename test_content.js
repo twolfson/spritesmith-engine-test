@@ -9,25 +9,6 @@ var config = require('./config');
 var imageDir = config.imageDir;
 
 module.exports = {
-  'gathers statistics on an image file':  function () {
-    expect(this.img).to.have.property('height', 50);
-    expect(this.img).to.have.property('width', 50);
-  },
-  'parsing multiple images': function () {
-    this.images = config.multipleImages;
-    this.width = 100;
-    this.height = 300;
-    this.coordinateArr = [{
-      x: 0,
-      y: 0
-    }, {
-      x: 0,
-      y: 50
-    }, {
-      x: 0,
-      y: 100
-    }];
-  },
   'interpretting a ridiculous amount of images': function () {
     // Create and save an array of 500 images
     var images = [],
@@ -70,17 +51,6 @@ module.exports = {
   },
   // TODO: Totally can flatten this out with doubleshot ;)
   'rendering them into a canvas': function (done) {
-    var that = this,
-        smith = this.smith;
-    smith.createImages(this.images, function handleImages (err, imgs) {
-      // If there is an error, callback with it
-      if (err) { return done(err); }
-
-      // Otherwise, draw them onto a canvas
-      smith.createCanvas(that.width, that.height, function (err, canvas) {
-        // If there is an error, callback with it
-        if (err) { return done(err); }
-
         // Add each image
         var coordinatesArr = that.coordinateArr;
         imgs.forEach(function (img, i) {
