@@ -29,14 +29,14 @@ module.exports = {
     this.width = 100;
     this.height = 300;
     this.coordinateArr = [{
-        "x": 0,
-        "y": 0
+      x: 0,
+      y: 0
     }, {
-        "x": 0,
-        "y": 50
+      x: 0,
+      y: 50
     }, {
-        "x": 0,
-        "y": 100
+      x: 0,
+      y: 100
     }];
   },
   'interpretting a ridiculous amount of images': function () {
