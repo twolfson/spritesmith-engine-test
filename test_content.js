@@ -9,17 +9,6 @@ var config = require('./config');
 var imageDir = config.imageDir;
 
 module.exports = {
-  'interpretting an image file': function (done) {
-    // Create an image and save it for later
-    var filepath = config.singleImage,
-        that = this;
-    this.smith.createImages([filepath], function (err, imgs) {
-      // Fallback images, save image, and callback
-      imgs = imgs || [];
-      that.img = imgs[0];
-      done(err);
-    });
-  },
   'gathers statistics on an image file':  function () {
     expect(this.img).to.have.property('height', 50);
     expect(this.img).to.have.property('width', 50);

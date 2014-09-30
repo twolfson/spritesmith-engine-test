@@ -1,3 +1,7 @@
+// Load in dependencies
+var assert = require('assert');
+var spritesmithUtils = require('./utils/spritesmith');
+
 /**
  * Define our main test function
  * @param {Object} params Container for paramters
@@ -15,6 +19,8 @@ function spritesmithEngineTest(params) {
   // Define our tests
   describe(params.engineName, function () {
     describe('interpretting an image file', function () {
+      spritesmithUtils.interpretImage([config.singleImage]);
+
       it('gathers statistics on an image file', function () {
 
       });
