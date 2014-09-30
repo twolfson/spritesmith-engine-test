@@ -50,9 +50,26 @@ function spritesmithEngineTest(params) {
         });
 
         it('can output an image', function () {
+          // Assert the actual image is the same expected
+          var actualImage = this.result;
+          var matchesAnImage = false;
 
+          // Allow for debugging
+          if (process.env.TEST_DEBUG) {
+            fs.writeFileSync('debug.png', actualImage, 'binary');
+          }
+
+          // TODO: Visit using `get-pixels`
+          // ANTI-PATTERN: Looping over set without identifiable lines for stack traces
+          this.expectedFilepaths.forEach(function testAgainstExpected (filepath) {
+            if (!matchesAnImage) {
+              var expectedImage = fs.readFileSync(filepath, 'binary');
+              matchesAnImage = actualImage === expectedImage;
+            }
+          });
+
+          expect(matchesAnImage).to.equal(true);
         });
-
       });
     });
     describe('interpretting a ridiculous amount of images', function () {
