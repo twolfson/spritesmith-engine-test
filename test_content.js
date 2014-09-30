@@ -2,6 +2,7 @@ var fs = require('fs'),
     path = require('path'),
     async = require('async'),
     expect = require('chai').expect,
+    getPixels = require('get-pixels'),
     config = require('./config'),
     imageDir = config.imageDir;
 module.exports = {
@@ -115,8 +116,7 @@ module.exports = {
     // Compare the pixels
     var actualPixels = getPixels(actualImage);
     var expectedPixels = getPixels(config.expectedMultipleImage);
-    var matchesAnImage = actualImage === expectedImage;
-    expect(matchesAnImage).to.equal(true);
+    expect(actualPixels).to.deep.equal(expectedPixels);
   },
   'does not crash': function () {
     // Would have thrown
