@@ -26,6 +26,7 @@
     "node": ">= 0.6.0"
   },
   "devDependencies": {
+    "get-pixels": "~3.0.1",
     "grunt": "~0.3.17"
   },
   "keywords": [

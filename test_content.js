@@ -105,22 +105,17 @@ module.exports = {
   },
   'can output an image':  function () {
     // Assert the actual image is the same expected
-    var actualImage = this.result,
-        matchesAnImage = false;
+    var actualImage = this.result;
 
     // Allow for debugging
     if (process.env.TEST_DEBUG) {
       fs.writeFileSync('debug.png', actualImage, 'binary');
     }
 
-    // ANTI-PATTERN: Looping over set without identifiable lines for stack traces
-    this.expectedFilepaths.forEach(function testAgainstExpected (filepath) {
-      if (!matchesAnImage) {
-        var expectedImage = fs.readFileSync(filepath, 'binary');
-        matchesAnImage = actualImage === expectedImage;
-      }
-    });
-
+    // Compare the pixels
+    var actualPixels = getPixels(actualImage);
+    var expectedPixels = getPixels(config.expectedMultipleImage);
+    var matchesAnImage = actualImage === expectedImage;
     expect(matchesAnImage).to.equal(true);
   },
   'does not crash': function () {

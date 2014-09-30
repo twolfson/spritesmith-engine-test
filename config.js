@@ -14,6 +14,7 @@ module.exports = {
     path.join(imageDir, 'sprite2.png'),
     path.join(imageDir, 'sprite3.png')
   ],
+  expectedMultipleImage: path.join(__dirname, 'expected_files/multiple.png'),
 
   repeatingImage: path.join(imageDir, '16.jpg'),
   repeatingPngImage: path.join(imageDir, '16.png'),
