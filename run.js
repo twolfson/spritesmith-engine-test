@@ -21,7 +21,7 @@ function spritesmithEngineTest(params) {
   // Define our tests
   describe(params.engineName, function () {
     describe('interpretting an image file', function () {
-      spritesmithUtils.interpretImages(engine, [config.singleImage]);
+      spritesmithUtils.interpretImages(engine, config.singleImage.filepaths);
 
       it('gathers statistics on an image file', function () {
         // Fallback images and grab first one
@@ -29,8 +29,8 @@ function spritesmithEngineTest(params) {
         var img = imgs[0];
 
         // Assert against image
-        expect(img).to.have.property('height', 50);
-        expect(img).to.have.property('width', 50);
+        expect(img).to.have.property('height', config.singleImage.height);
+        expect(img).to.have.property('width', config.singleImage.width);
       });
     });
 
