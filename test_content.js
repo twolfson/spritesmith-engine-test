@@ -3,7 +3,7 @@ var fs = require('fs'),
     async = require('async'),
     expect = require('chai').expect,
     getPixels = require('get-pixels'),
-    Tempfile = require('temporary').file,
+    Tempfile = require('temporary').File,
     config = require('./config'),
     imageDir = config.imageDir;
 module.exports = {
@@ -117,12 +117,15 @@ module.exports = {
     // Load actual pixels
     // TODO: Clean up image
     var actualFile = new Tempfile();
+    console.log('wrting image');
     actualFile.writeFileSync(actualImage, 'binary');
+    console.log('all done');
     getPixels(actualFile.path, 'image/png', function loadedActualPixels (err, actualPixels) {
       // If there was an error, exit early
       if (err) {
         return done(err);
       }
+      console.log('all done2');
 
       // Load expected pixels
       getPixels(config.expectedMultipleImage, 'image/png', function loadedExpectedPixels (err, expectedPixels) {
@@ -130,9 +133,13 @@ module.exports = {
         if (err) {
           return done(err);
         }
+        console.log('all done3');
 
         // Compare pixels and callback
-        expect(actualPixels).to.deep.equal(expectedPixels);
+        // expect(actualPixels).to.deep.equal(expectedPixels);
+        var assert = require('assert');
+        assert.deepEqual(actualPixels, expectedPixels);
+        console.log('all done4');
         done();
       });
     });
