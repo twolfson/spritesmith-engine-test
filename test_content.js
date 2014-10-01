@@ -10,25 +10,6 @@ var config = require('./config');
 var imageDir = config.imageDir;
 
 module.exports = {
-  'interpretting a ridiculous amount of images': function () {
-    // Create and save an array of 500 images
-    var images = [],
-        coordinateArr = [],
-        imagePath = config.repeatingImage,
-        i = 0,
-        len = 500;
-    for (; i < len; i++) {
-      images.push(imagePath);
-      coordinateArr.push({
-        x: 0,
-        y: i * 16
-      });
-    }
-    this.images = images;
-    this.width = 16;
-    this.height = 16 * 500;
-    this.coordinateArr = coordinateArr;
-  },
   // TODO: Combine this with first assertion
   'interpretting a large image': function (done) {
     // Save expected stats for later
