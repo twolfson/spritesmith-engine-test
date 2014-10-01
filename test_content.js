@@ -3,7 +3,6 @@ var fs = require('fs'),
     async = require('async'),
     expect = require('chai').expect,
     getPixels = require('get-pixels'),
-    Tempfile = require('temporary').File,
     config = require('./config'),
     imageDir = config.imageDir;
 module.exports = {
@@ -119,21 +118,26 @@ module.exports = {
       // DEV: While these have the same signature, the input formats are different
       // and the signatures might change in the near future
       function loadActualPixels (cb) {
-        getPixels(actualImage, 'image/png', cb);
+        var actualImageBuffer = new Buffer(actualImage, 'binary');
+        getPixels(actualImageBuffer, 'image/png', cb);
       },
       function loadExpectedPixels (cb) {
         getPixels(config.expectedMultipleImage, 'image/png', cb);
       }
-    ], function handlePixels (cb) {
+    ], function handlePixels (err, pixels) {
       // If there was an error, exit early
       if (err) {
         return done(err);
       }
 
+      // Localize pixel info
+      var actualPixels = pixels[0].data;
+      var expectedPixels = pixels[1].data;
+
       // Compare pixels
       var pixelsMatchWithinThreshold = true;
       var i = 0;
-      var len = actualPixels.data.length;
+      var len = actualPixels.length;
       for (; i < len; i++) {
         if (Math.abs(expectedPixels[i] - actualPixels[i]) > 10) {
           pixelsMatchWithinThreshold = false;
