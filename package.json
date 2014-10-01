@@ -26,9 +26,8 @@
     "node": ">= 0.6.0"
   },
   "devDependencies": {
-    "get-pixels": "~3.0.1",
-    "grunt": "~0.3.17",
-    "temporary": "0.0.8"
+    "get-pixels": "twolfson/get-pixels#0e9e7e2",
+    "grunt": "~0.3.17"
   },
   "keywords": [
     "spritesmith",
