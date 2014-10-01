@@ -138,6 +138,16 @@ module.exports = {
         // Compare pixels and callback
         // expect(actualPixels).to.deep.equal(expectedPixels);
         var assert = require('assert');
+        var _ = require('underscore');
+        var _actualPixels = Array.apply([], actualPixels.data);
+        var _expectedPixels = Array.apply([], expectedPixels.data);
+        // console.log(JSON.stringify(_actualPixels, null, 2));
+        // console.log(JSON.stringify(_expectedPixels, null, 2));
+        _actualPixels.forEach(function (val, i) {
+          if (_expectedPixels[i] !== val) {
+            console.log('index "' + i + '" did not match values. Actual: ' + val + ' Expected: ' + _expectedPixels[i]);
+          }
+        });
         assert.deepEqual(actualPixels, expectedPixels);
         console.log('all done4');
         done();
