@@ -19,11 +19,11 @@ exports.interpretImages = function (engine, filepaths) {
   });
 };
 
-exports._createCanvas = function (width, height) {
+exports._createCanvas = function (engine, width, height) {
   before(function createCanvasFn (done) {
     // Create and save our canvas
     var that = this;
-    smith.createCanvas(that.width, that.height, function saveCanvas (err, canvas) {
+    engine.createCanvas(that.width, that.height, function saveCanvas (err, canvas) {
       that.canvas = canvas;
       done(err);
     });
@@ -70,9 +70,9 @@ exports._exportCanvas = function (exportParams) {
 };
 
 exports.renderCanvas = function (options) {
-  exports._createCanvas(options.width, options.height);
+  exports._createCanvas(options.engine, options.width, options.height);
   exports._addImages(options.coordinateArr);
-  exports._addImages(options.exportParams);
+  exports._exportCanvas(options.exportParams);
 };
 
 exports.debugResult = function () {

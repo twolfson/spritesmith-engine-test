@@ -35,11 +35,12 @@ function spritesmithEngineTest(params) {
     });
 
     describe('parsing multiple images', function () {
-      spritesmithUtils.interpretImages(engine, [config.multipleImages]);
+      spritesmithUtils.interpretImages(engine, config.multipleImages);
 
       describe('rendering them into a canvas', function () {
         // Render the canvas into a binary image string
         spritesmithUtils.renderCanvas({
+          engine: engine,
           width: 100,
           height: 300,
           coordinateArr: [
@@ -96,6 +97,7 @@ function spritesmithEngineTest(params) {
 
       describe('rendering them into a canvas', function () {
         spritesmithUtils.renderCanvas({
+          engine: engine,
           width: 16,
           height: 16 * 500,
           coordinateArr: coordinateArr,
