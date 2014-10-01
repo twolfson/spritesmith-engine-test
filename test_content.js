@@ -116,9 +116,11 @@ module.exports = {
 
     // Load actual pixels
     // TODO: Clean up image
+    var assert = require('assert');
     var actualFile = new Tempfile();
     console.log('wrting image');
     actualFile.writeFileSync(actualImage, 'binary');
+    assert.deepEqual(actualFile.readFileSync(), new Buffer(actualImage, 'binary'));
     console.log('all done');
     getPixels(actualFile.path, 'image/png', function loadedActualPixels (err, actualPixels) {
       // If there was an error, exit early
