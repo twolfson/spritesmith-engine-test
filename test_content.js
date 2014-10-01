@@ -144,7 +144,7 @@ module.exports = {
         // console.log(JSON.stringify(_actualPixels, null, 2));
         // console.log(JSON.stringify(_expectedPixels, null, 2));
         _actualPixels.forEach(function (val, i) {
-          if (_expectedPixels[i] !== val) {
+          if (Math.abs(_expectedPixels[i] - val) > 10) {
             console.log('index "' + i + '" did not match values. Actual: ' + val + ' Expected: ' + _expectedPixels[i]);
           }
         });
