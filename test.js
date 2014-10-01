@@ -1,5 +1,10 @@
 // Load in dependencies
 var assert = require('assert');
+var fs = require('fs');
+var async = require('async');
+var expect = require('chai').expect;
+var getPixels = require('get-pixels');
+var config = require('./config');
 var spritesmithUtils = require('./utils/spritesmith');
 
 /**
@@ -126,18 +131,21 @@ function spritesmithEngineTest(params) {
         });
 
         it('does not crash', function () {
-
+          // Would have thrown
         });
         it('returns an image', function () {
-
+          expect(this.result).to.not.equal('');
         });
       });
     });
 
     // DEV: This is testing an edge case of phantomjssmith
     describe('interpretting a large image', function () {
-      it('gathers proper image size', function () {
+      spritesmithUtils.interpretImages([config.largeImage]);
 
+      it('gathers proper image size', function () {
+        expect(this.img).to.have.property('height', 600);
+        expect(this.img).to.have.property('width', 800);
       });
     });
   });
