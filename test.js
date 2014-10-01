@@ -107,13 +107,13 @@ function spritesmithEngineTest(params) {
       var i = 0;
       var len = 500;
       for (; i < len; i++) {
-        images.push( config.repeatingImage);
+        images.push(config.repeatingImage);
         coordinateArr.push({
           x: 0,
           y: i * 16
         });
       }
-      spritesmithUtils.interpretImages([images]);
+      spritesmithUtils.interpretImages(images);
 
       describe('rendering them into a canvas', function () {
         spritesmithUtils.renderCanvas({
