@@ -27,7 +27,8 @@
   },
   "devDependencies": {
     "get-pixels": "~3.0.1",
-    "grunt": "~0.3.17"
+    "grunt": "~0.3.17",
+    "temporary": "0.0.8"
   },
   "keywords": [
     "spritesmith",

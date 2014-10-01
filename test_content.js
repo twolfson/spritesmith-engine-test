@@ -3,6 +3,7 @@ var fs = require('fs'),
     async = require('async'),
     expect = require('chai').expect,
     getPixels = require('get-pixels'),
+    Tempfile = require('temporary').file,
     config = require('./config'),
     imageDir = config.imageDir;
 module.exports = {
@@ -114,7 +115,10 @@ module.exports = {
     }
 
     // Load actual pixels
-    getPixels(actualImage, 'image/png', function loadedActualPixels (err, actualPixels) {
+    // TODO: Clean up image
+    var actualFile = new Tempfile();
+    actualFile.writeFileSync(actualImage, 'binary');
+    getPixels(actualFile.path, 'image/png', function loadedActualPixels (err, actualPixels) {
       // If there was an error, exit early
       if (err) {
         return done(err);
