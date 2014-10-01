@@ -1,5 +1,6 @@
 // Load in dependencies
 var assert = require('assert');
+var fs = require('fs');
 
 // Define our utility functions
 exports.interpretImages = function (engine, filepaths) {
@@ -71,4 +72,10 @@ exports.renderCanvas = function (options) {
   exports._createCanvas(options.width, options.height);
   exports._addImages(options.coordinateArr);
   exports._addImages(options.exportParams);
+};
+
+exports.debugResult = function () {
+  before(function writeDebugImage (done) {
+    fs.writeFile('debug.png', this.result, 'binary', done);
+  });
 };

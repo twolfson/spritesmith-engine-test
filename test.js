@@ -1,6 +1,5 @@
 // Load in dependencies
 var assert = require('assert');
-var fs = require('fs');
 var async = require('async');
 var expect = require('chai').expect;
 var getPixels = require('get-pixels');
@@ -54,20 +53,19 @@ function spritesmithEngineTest(params) {
           }
         });
 
+        // Allow for debugging
+        // TODO: Test me
+        if (process.env.TEST_DEBUG) {
+          spritesmithUtils.debugResult();
+        }
+
         it('can output an image', function (done) {
-          // Assert the actual image is the same expected
-          var actualImage = this.result;
-
-          // Allow for debugging
-          if (process.env.TEST_DEBUG) {
-            fs.writeFileSync('debug.png', actualImage, 'binary');
-          }
-
-          // Load pixels
+          // Load actual and expected pixels
           async.parallel([
             // DEV: While these have the same signature, the input formats are different
             // and the signatures might change in the near future
             function loadActualPixels (cb) {
+              var actualImage = this.result;
               var actualImageBuffer = new Buffer(actualImage, 'binary');
               getPixels(actualImageBuffer, 'image/png', cb);
             },
