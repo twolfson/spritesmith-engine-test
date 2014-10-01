@@ -120,8 +120,9 @@ function spritesmithEngineTest(params) {
       spritesmithUtils.interpretImages(engine, [config.largeImage]);
 
       it('gathers proper image size', function () {
-        expect(this.img).to.have.property('height', 600);
-        expect(this.img).to.have.property('width', 800);
+        var img = this.imgs[0];
+        expect(img).to.have.property('height', 600);
+        expect(img).to.have.property('width', 800);
       });
     });
   });

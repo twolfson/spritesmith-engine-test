@@ -23,7 +23,7 @@ exports._createCanvas = function (engine, width, height) {
   before(function createCanvasFn (done) {
     // Create and save our canvas
     var that = this;
-    engine.createCanvas(that.width, that.height, function saveCanvas (err, canvas) {
+    engine.createCanvas(width, height, function saveCanvas (err, canvas) {
       that.canvas = canvas;
       done(err);
     });
