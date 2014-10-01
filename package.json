@@ -26,7 +26,6 @@
     "node": ">= 0.6.0"
   },
   "devDependencies": {
-    "get-pixels": "twolfson/get-pixels#0e9e7e2",
     "grunt": "~0.3.17"
   },
   "keywords": [
@@ -35,7 +34,8 @@
     "engine"
   ],
   "dependencies": {
+    "async": "~0.2.7",
     "chai": "~1.5.0",
-    "async": "~0.2.7"
+    "get-pixels": "twolfson/get-pixels#0e9e7e2"
   }
 }
