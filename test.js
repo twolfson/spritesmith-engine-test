@@ -1,8 +1,6 @@
 // Load in dependencies
 var assert = require('assert');
-var async = require('async');
 var expect = require('chai').expect;
-var getPixels = require('get-pixels');
 var config = require('./config');
 var spritesmithUtils = require('./utils/spritesmith');
 

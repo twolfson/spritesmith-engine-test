@@ -1,6 +1,7 @@
 // Load in dependencies
 var assert = require('assert');
 var fs = require('fs');
+var getPixels = require('get-pixels');
 
 // Define our utility functions
 exports.interpretImages = function (engine, filepaths) {
