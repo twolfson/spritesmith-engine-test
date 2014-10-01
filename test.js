@@ -70,19 +70,14 @@ function spritesmithEngineTest(params) {
           var expectedPixels = this.expectedPixels;
 
           // Compare pixels
-          var pixelsMatchWithinThreshold = true;
           var i = 0;
           var len = actualPixels.length;
           for (; i < len; i++) {
-            if (Math.abs(expectedPixels[i] - actualPixels[i]) > 10) {
-              pixelsMatchWithinThreshold = false;
-              break;
-            }
+            // If the pixels did not match, complain and throw
+            var pixelsWithinThreshold = Math.abs(expectedPixels[i] - actualPixels[i]) <= 10;
+            expect(pixelsWithinThreshold).to.equal(true,
+              'Expected ' + expectedPixels[i] + ' and ' + actualPixels[i] + ' to be at most 10 apart. Index was ' + i);
           }
-
-          // If the pixels did not match, complain about the index
-          expect(pixelsMatchWithinThreshold).to.equal(true,
-            'Expected ' + expectedPixels[i] + ' and ' + actualPixels[i] + ' to be at most 10 apart. Index was ' + i);
         });
       });
     });
