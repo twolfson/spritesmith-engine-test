@@ -114,46 +114,39 @@ module.exports = {
       fs.writeFileSync('debug.png', actualImage, 'binary');
     }
 
-    // Load actual pixels
-    // TODO: Clean up image
-    var assert = require('assert');
-    var actualFile = new Tempfile();
-    console.log('wrting image');
-    actualFile.writeFileSync(actualImage, 'binary');
-    assert.deepEqual(actualFile.readFileSync(), new Buffer(actualImage, 'binary'));
-    console.log('all done');
-    getPixels(actualFile.path, 'image/png', function loadedActualPixels (err, actualPixels) {
+    // Load pixels
+    async.parallel([
+      // DEV: While these have the same signature, the input formats are different
+      // and the signatures might change in the near future
+      function loadActualPixels (cb) {
+        getPixels(actualImage, 'image/png', cb);
+      },
+      function loadExpectedPixels (cb) {
+        getPixels(config.expectedMultipleImage, 'image/png', cb);
+      }
+    ], function handlePixels (cb) {
       // If there was an error, exit early
       if (err) {
         return done(err);
       }
-      console.log('all done2');
 
-      // Load expected pixels
-      getPixels(config.expectedMultipleImage, 'image/png', function loadedExpectedPixels (err, expectedPixels) {
-        // If there was an error, exit early
-        if (err) {
-          return done(err);
+      // Compare pixels
+      var pixelsMatchWithinThreshold = true;
+      var i = 0;
+      var len = actualPixels.data.length;
+      for (; i < len; i++) {
+        if (Math.abs(expectedPixels[i] - actualPixels[i]) > 10) {
+          pixelsMatchWithinThreshold = false;
+          break;
         }
-        console.log('all done3');
+      }
 
-        // Compare pixels and callback
-        // expect(actualPixels).to.deep.equal(expectedPixels);
-        var assert = require('assert');
-        var _ = require('underscore');
-        var _actualPixels = Array.apply([], actualPixels.data);
-        var _expectedPixels = Array.apply([], expectedPixels.data);
-        // console.log(JSON.stringify(_actualPixels, null, 2));
-        // console.log(JSON.stringify(_expectedPixels, null, 2));
-        _actualPixels.forEach(function (val, i) {
-          if (Math.abs(_expectedPixels[i] - val) > 10) {
-            console.log('index "' + i + '" did not match values. Actual: ' + val + ' Expected: ' + _expectedPixels[i]);
-          }
-        });
-        assert.deepEqual(actualPixels, expectedPixels);
-        console.log('all done4');
-        done();
-      });
+      // If the pixels did not match, complain about the index
+      expect(pixelsMatchWithinThreshold).to.equal(true,
+        'Expected ' + expectedPixels[i] + ' and ' + actualPixels[i] + ' to be at most 10 apart. Index was ' + i);
+
+      // Callback
+      done();
     });
   },
   'does not crash': function () {
