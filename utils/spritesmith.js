@@ -79,3 +79,35 @@ exports.debugResult = function () {
     fs.writeFile('debug.png', this.result, 'binary', done);
   });
 };
+
+exports.loadActualPixels = function (encoding) {
+  before(function loadActualPixelsFn (done) {
+    // Convert the binary string into a buffer
+    var actualImage = this.result;
+    var actualImageBuffer = new Buffer(actualImage, 'binary');
+
+    // Load the pixels, save, and callback
+    var that = this;
+    getPixels(actualImageBuffer, encoding, function saveActualPixels (err, pixels) {
+      that.actualPixels = pixels;
+      done(err);
+    });
+  });
+  after(function cleanupActualPixels () {
+    delete this.actualPixels;
+  });
+};
+
+exports.loadExpectedPixels = function (filepath, encoding) {
+  before(function loadExpectedPixelsFn (done) {
+    // Load the pixels from disk, save, and callback
+    var that = this;
+    getPixels(filepath, encoding, function saveExpectedPixels (err, pixels) {
+      that.expectedPixels = pixels;
+      done(err);
+    });
+  });
+  after(function cleanupExpectedPixels () {
+    delete this.expectedPixels;
+  });
+};

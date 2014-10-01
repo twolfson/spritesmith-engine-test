@@ -40,6 +40,7 @@ function spritesmithEngineTest(params) {
       spritesmithUtils.interpretImages([config.multipleImages]);
 
       describe('rendering them into a canvas', function () {
+        // Render the canvas into a binary image string
         spritesmithUtils.renderCanvas({
           width: 100,
           height: 300,
@@ -58,6 +59,10 @@ function spritesmithEngineTest(params) {
         if (process.env.TEST_DEBUG) {
           spritesmithUtils.debugResult();
         }
+
+        // Load pixels for comparison
+        spritesmithUtils.loadActualPixels('image/png');
+        spritesmithUtils.loadExpectedPixels(config.expectedMultipleImage, 'image/png');
 
         it('can output an image', function (done) {
           // Load actual and expected pixels
