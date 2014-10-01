@@ -21,7 +21,7 @@ function spritesmithEngineTest(params) {
   // Define our tests
   describe(params.engineName, function () {
     describe('interpretting an image file', function () {
-      spritesmithUtils.interpretImages([config.singleImage]);
+      spritesmithUtils.interpretImages(engine, [config.singleImage]);
 
       it('gathers statistics on an image file', function () {
         // Fallback images and grab first one
@@ -35,7 +35,7 @@ function spritesmithEngineTest(params) {
     });
 
     describe('parsing multiple images', function () {
-      spritesmithUtils.interpretImages([config.multipleImages]);
+      spritesmithUtils.interpretImages(engine, [config.multipleImages]);
 
       describe('rendering them into a canvas', function () {
         // Render the canvas into a binary image string
@@ -92,7 +92,7 @@ function spritesmithEngineTest(params) {
           y: i * 16
         });
       }
-      spritesmithUtils.interpretImages(images);
+      spritesmithUtils.interpretImages(engine, images);
 
       describe('rendering them into a canvas', function () {
         spritesmithUtils.renderCanvas({
@@ -115,7 +115,7 @@ function spritesmithEngineTest(params) {
 
     // DEV: This is testing an edge case of phantomjssmith
     describe('interpretting a large image', function () {
-      spritesmithUtils.interpretImages([config.largeImage]);
+      spritesmithUtils.interpretImages(engine, [config.largeImage]);
 
       it('gathers proper image size', function () {
         expect(this.img).to.have.property('height', 600);
