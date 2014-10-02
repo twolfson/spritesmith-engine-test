@@ -9,7 +9,7 @@ var spritesmithUtils = require('./utils/spritesmith');
  * @param {Object} params Container for paramters
  * @param {Object} params.engine Spritemith engine to test
  * @param {String} params.engineName Name of engine to test
- * @param {Object} [params.flags] Options to enable/disable tests
+ * @param {Object} [params.options] Options to enable/disable tests
  */
 function spritesmithEngineTest(params) {
   // Assert and localize parameters
@@ -17,6 +17,7 @@ function spritesmithEngineTest(params) {
   var engine = params.engine;
   assert(engine, '`params.engine` was not provided to `spritesmith-engine-test`');
   assert(params.engineName, '`params.engineName` was not provided to `spritesmith-engine-test`, please provide one (e.g. \'phantomjssmith\')');
+  var testOptions = params.options || {};
 
   // Define our tests
   describe(params.engineName, function () {
@@ -78,30 +79,34 @@ function spritesmithEngineTest(params) {
         });
       });
     });
-    describe('interpretting a ridiculous amount of images', function () {
-      // Interpret an array of 500 images
-      var repeatingImages = config.repeatingImages;
-      spritesmithUtils.interpretImages(engine, repeatingImages.filepaths);
 
-      describe('rendering them into a canvas', function () {
-        spritesmithUtils.renderCanvas({
-          engine: engine,
-          width: repeatingImages.width,
-          height: repeatingImages.height,
-          coordinateArr: repeatingImages.coordinateArr,
-          exportParams: {
-            format: 'png'
-          }
-        });
+    // Conditionally skip ridiculous image test
+    if (testOptions.skipRidiculousImagesTest === true) {
+      describe('interpretting a ridiculous amount of images', function () {
+        // Interpret an array of 500 images
+        var repeatingImages = config.repeatingImages;
+        spritesmithUtils.interpretImages(engine, repeatingImages.filepaths);
 
-        it('does not crash', function () {
-          // Would have thrown
-        });
-        it('returns an image', function () {
-          expect(this.result).to.not.equal('');
+        describe('rendering them into a canvas', function () {
+          spritesmithUtils.renderCanvas({
+            engine: engine,
+            width: repeatingImages.width,
+            height: repeatingImages.height,
+            coordinateArr: repeatingImages.coordinateArr,
+            exportParams: {
+              format: 'png'
+            }
+          });
+
+          it('does not crash', function () {
+            // Would have thrown
+          });
+          it('returns an image', function () {
+            expect(this.result).to.not.equal('');
+          });
         });
       });
-    });
+    }
 
     // DEV: This is testing an edge case of phantomjssmith
     describe('interpretting a large image', function () {
