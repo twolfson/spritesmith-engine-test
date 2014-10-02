@@ -62,7 +62,7 @@ exports.repeatingPngImages = extend({}, exports.repeatingImages, {
 
 // Define large image test case
 exports.largeImage = {
-  filepath: path.join(exports.imageDir, '800.png'),
+  filepaths: [path.join(exports.imageDir, '800.png')],
   width: 800,
   height: 600
 };

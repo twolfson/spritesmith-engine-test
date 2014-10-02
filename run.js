@@ -21,7 +21,8 @@ function spritesmithEngineTest(params) {
   // Define our tests
   describe(params.engineName, function () {
     describe('interpretting an image file', function () {
-      spritesmithUtils.interpretImages(engine, config.singleImage.filepaths);
+      var singleImage = config.singleImage;
+      spritesmithUtils.interpretImages(engine, singleImage.filepaths);
 
       it('gathers statistics on an image file', function () {
         // Fallback images and grab first one
@@ -29,17 +30,17 @@ function spritesmithEngineTest(params) {
         var img = imgs[0];
 
         // Assert against image
-        expect(img).to.have.property('height', config.singleImage.height);
-        expect(img).to.have.property('width', config.singleImage.width);
+        expect(img).to.have.property('height', singleImage.height);
+        expect(img).to.have.property('width', singleImage.width);
       });
     });
 
     describe('parsing multiple images', function () {
-      spritesmithUtils.interpretImages(engine, config.multipleImages);
+      var multipleImages = config.multipleImages;
+      spritesmithUtils.interpretImages(engine, multipleImages);
 
       describe('rendering them into a canvas', function () {
         // Render the canvas into a binary image string
-        var multipleImages = config.multipleImages;
         spritesmithUtils.renderCanvas({
           engine: engine,
           width: multipleImages.width,
@@ -79,14 +80,15 @@ function spritesmithEngineTest(params) {
     });
     describe('interpretting a ridiculous amount of images', function () {
       // Interpret an array of 500 images
-      spritesmithUtils.interpretImages(engine, images);
+      var repeatingImages = config.repeatingImages;
+      spritesmithUtils.interpretImages(engine, repeatingImages.filepaths);
 
       describe('rendering them into a canvas', function () {
         spritesmithUtils.renderCanvas({
           engine: engine,
-          width: 16,
-          height: 16 * 500,
-          coordinateArr: coordinateArr,
+          width: repeatingImages.width,
+          height: repeatingImages.height,
+          coordinateArr: repeatingImages.coordinateArr,
           exportParams: {
             format: 'png'
           }
@@ -104,7 +106,7 @@ function spritesmithEngineTest(params) {
     // DEV: This is testing an edge case of phantomjssmith
     describe('interpretting a large image', function () {
       var largeImage = config.largeImage;
-      spritesmithUtils.interpretImages(engine, [largeImage.filepath]);
+      spritesmithUtils.interpretImages(engine, largeImage.filepaths);
 
       it('gathers proper image size', function () {
         var img = this.imgs[0];
