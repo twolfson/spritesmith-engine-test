@@ -44,7 +44,7 @@ var i = 0;
 var len = 500;
 for (; i < len; i++) {
   repeatingImageFilepaths.push(repeatingImageFilepath);
-  repeatingPngImageFilepaths.push(repeatingPngImageFilepaths);
+  repeatingPngImageFilepaths.push(repeatingPngImageFilepath);
   repeatingCoordinateArr.push({
     x: 0,
     y: i * 16
