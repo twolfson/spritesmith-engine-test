@@ -81,7 +81,7 @@ function spritesmithEngineTest(params) {
     });
 
     // Conditionally skip ridiculous image test
-    if (testOptions.skipRidiculousImagesTest === true) {
+    if (testOptions.skipRidiculousImagesTest !== true) {
       describe('interpretting a ridiculous amount of images', function () {
         // Interpret an array of 500 images
         var repeatingImages = config.repeatingImages;
