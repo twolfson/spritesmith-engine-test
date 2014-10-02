@@ -2,10 +2,10 @@
 
 Common test suite and specification for all [spritesmith][] engines
 
-These files were written for usage with [doubleshot][doubleshot].
+These files were written for usage with [mocha][].
 
 [spritesmith]: https://github.com/Ensighten/spritesmith
-[doubleshot]: https://github.com/twolfson/doubleshot
+[mocha]: https://github.com/visionmedia/mocha
 
 ## Specification
 There are two constructors that will need to be made
@@ -68,44 +68,40 @@ canvas['export'](options, cb);
 ```
 
 ## Using the module
-Install the module via npm
+Install the module via `npm`
 
 ```shell
 npm install spritesmith-engine-test
 ```
 
-Create files that require and extend test `content` and `outline`
+Create files that require and run the test suite
 
 ```js
-// test_outline.js
-module.exports = {
-  // Run all spritesmith-engine-tests using mysmith
-  'mysmith': require('spritesmith-engine-test').outline
-};
+// // test/myengine_test.js
+// Load in dependencies
+var spritesmithEngineTest = require('spritesmith-engine-test');
+var myengine = require('../lib/engine');
 
-// test_content.js
-var commonTest = require('spritesmith-engine-test').content;
-module.exports = extend({}, commonTest, {
-  // Provide a hook for my smith in doubleshot
-  'mysmith': function () {
-    // Save mysmith as the test smith
-    this.smith = mysmith;
-
-    // Specify the files to be tested against
-    var expectedDir = __dirname + '/expected_files/';
-    this.expectedFilepaths = [expectedDir + '/multiple.png', expectedDir + '/multiple2.png'];
-  }
+// Run our test suite
+// DEV: This loads and define multiple `mocha` test suites
+spritesmithEngineTest.run({
+  engine: myengine,
+  engineName: 'myengine'
 });
 ```
 
-Run your tests via `doubleshot`
+Run your tests via `mocha`
 
-```shell
+```bash
 # Install test dependencies
-npm install -g doubleshot
+$ npm install -g mocha
 
-# Run doubleshot test suite
-doubleshot
+# Run mocha test suite
+$ mocha
+#  myengine
+#    interpretting an image file
+#      ✓ gathers statistics on an image file
+#  ...
 ```
 
 ## License
