@@ -37,7 +37,7 @@ function spritesmithEngineTest(params) {
 
     describe('parsing multiple images', function () {
       var multipleImages = config.multipleImages;
-      spritesmithUtils.interpretImages(engine, multipleImages);
+      spritesmithUtils.interpretImages(engine, multipleImages.filepaths);
 
       describe('rendering them into a canvas', function () {
         // Render the canvas into a binary image string
