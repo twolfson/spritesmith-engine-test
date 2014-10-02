@@ -39,15 +39,12 @@ function spritesmithEngineTest(params) {
 
       describe('rendering them into a canvas', function () {
         // Render the canvas into a binary image string
+        var multipleImages = config.multipleImages;
         spritesmithUtils.renderCanvas({
           engine: engine,
-          width: 100,
-          height: 300,
-          coordinateArr: [
-            {x: 0, y: 0},
-            {x: 0, y: 50},
-            {x: 0, y: 100}
-          ],
+          width: multipleImages.width,
+          height: multipleImages.height,
+          coordinateArr: multipleImages.coordinateArr,
           exportParams: {
             format: 'png'
           }
@@ -61,7 +58,7 @@ function spritesmithEngineTest(params) {
 
         // Load pixels for comparison
         spritesmithUtils.loadActualPixels('image/png');
-        spritesmithUtils.loadExpectedPixels(config.expectedMultipleImage, 'image/png');
+        spritesmithUtils.loadExpectedPixels(multipleImages.expectedImage, 'image/png');
 
         it('can output an image', function () {
           // Localize pixel info
@@ -81,18 +78,7 @@ function spritesmithEngineTest(params) {
       });
     });
     describe('interpretting a ridiculous amount of images', function () {
-      // Create and interpret an array of 500 images
-      var images = [];
-      var coordinateArr = [];
-      var i = 0;
-      var len = 500;
-      for (; i < len; i++) {
-        images.push(config.repeatingImage);
-        coordinateArr.push({
-          x: 0,
-          y: i * 16
-        });
-      }
+      // Interpret an array of 500 images
       spritesmithUtils.interpretImages(engine, images);
 
       describe('rendering them into a canvas', function () {
@@ -117,12 +103,13 @@ function spritesmithEngineTest(params) {
 
     // DEV: This is testing an edge case of phantomjssmith
     describe('interpretting a large image', function () {
-      spritesmithUtils.interpretImages(engine, [config.largeImage]);
+      var largeImage = config.largeImage;
+      spritesmithUtils.interpretImages(engine, [largeImage.filepath]);
 
       it('gathers proper image size', function () {
         var img = this.imgs[0];
-        expect(img).to.have.property('height', 600);
-        expect(img).to.have.property('width', 800);
+        expect(img).to.have.property('width', largeImage.width);
+        expect(img).to.have.property('height', largeImage.height);
       });
     });
   });
