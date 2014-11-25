@@ -1,4 +1,6 @@
 # spritesmith-engine-test
+2.0.1 - Fixed mistake with pixel assertions
+
 2.0.0 - Moved to mocha + utilities system for testing
 
 1.2.1 - Corrected improper dependency listing for `get-pixels`
