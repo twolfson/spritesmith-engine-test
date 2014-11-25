@@ -59,7 +59,7 @@ exports._exportCanvas = function (exportParams) {
 
     // Export canvas, save result, and callback
     var that = this;
-    canvas['export']({format: 'png'}, function saveExport (err, result) {
+    canvas['export'](exportParams, function saveExport (err, result) {
       that.result = result;
       done(err);
     });
@@ -75,9 +75,9 @@ exports.renderCanvas = function (options) {
   exports._exportCanvas(options.exportParams);
 };
 
-exports.debugResult = function () {
+exports.debugResult = function (filepath) {
   before(function writeDebugImage (done) {
-    fs.writeFile('debug.png', this.result, 'binary', done);
+    fs.writeFile(filepath || 'debug.png', this.result, 'binary', done);
   });
 };
 
