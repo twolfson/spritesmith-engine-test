@@ -1,4 +1,6 @@
 # spritesmith-engine-test
+2.1.0 - Fixed hardcoded values for exporting and debugging
+
 2.0.1 - Fixed mistake with pixel assertions
 
 2.0.0 - Moved to mocha + utilities system for testing
