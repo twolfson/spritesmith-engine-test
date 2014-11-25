@@ -90,7 +90,7 @@ exports.loadActualPixels = function (encoding) {
     // Load the pixels, save, and callback
     var that = this;
     getPixels(actualImageBuffer, encoding, function saveActualPixels (err, pixels) {
-      that.actualPixels = pixels;
+      that.actualPixels = pixels.data;
       done(err);
     });
   });
@@ -104,7 +104,7 @@ exports.loadExpectedPixels = function (filepath, encoding) {
     // Load the pixels from disk, save, and callback
     var that = this;
     getPixels(filepath, encoding, function saveExpectedPixels (err, pixels) {
-      that.expectedPixels = pixels;
+      that.expectedPixels = pixels.data;
       done(err);
     });
   });
