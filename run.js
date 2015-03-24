@@ -1,6 +1,7 @@
 // Load in dependencies
 var assert = require('assert');
 var expect = require('chai').expect;
+var fs = require('fs');
 var config = require('./config');
 var spritesmithUtils = require('./utils/spritesmith');
 
@@ -21,9 +22,30 @@ function spritesmithEngineTest(params) {
 
   // Define our tests
   describe(params.engineName, function () {
-    describe('interpretting an image file', function () {
+    describe('interpreting an image file', function () {
       var singleImage = config.singleImage;
       spritesmithUtils.interpretImages(engine, singleImage.filepaths);
+
+      it('gathers statistics on an image file', function () {
+        // Fallback images and grab first one
+        var imgs = this.imgs || [];
+        var img = imgs[0];
+
+        // Assert against image
+        expect(img).to.have.property('height', singleImage.height);
+        expect(img).to.have.property('width', singleImage.width);
+      });
+    });
+
+    describe('loading buffers', function () {
+      var singleImage = config.singleImage;
+      var buffers = singleImage.filepaths.map(function(image) {
+          return {
+              id: image,
+              buffer: fs.readFileSync(image)
+          };
+      });
+      spritesmithUtils.interpretImages(engine, buffers);
 
       it('gathers statistics on an image file', function () {
         // Fallback images and grab first one
