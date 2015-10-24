@@ -4,11 +4,11 @@ var fs = require('fs');
 var getPixels = require('get-pixels');
 
 // Define our utility functions
-exports.interpretImages = function (engine, filepaths) {
+exports.interpretImages = function (engine, vinylFiles) {
   before(function interpretImagesFn (done) {
     // Create an image and save it for later
     var that = this;
-    engine.createImages(filepaths, function (err, imgs) {
+    engine.createImages(vinylFiles, function (err, imgs) {
       // Save images and callback
       that.imgs = imgs;
       done(err);
