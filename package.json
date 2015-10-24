@@ -26,7 +26,8 @@
     "node": ">= 0.8.0"
   },
   "devDependencies": {
-    "grunt": "~0.3.17"
+    "grunt": "~0.3.17",
+    "vinyl": "~0.4.6"
   },
   "keywords": [
     "spritesmith",
