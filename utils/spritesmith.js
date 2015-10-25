@@ -99,11 +99,12 @@ exports.concatResultStream = function () {
 };
 
 exports.loadActualPixels = function (encoding) {
+  exports.concatResultStream();
   before(function loadActualPixelsFn (done) {
-    // Load the pixels, save, and callback
-    var actualPixelsBuff = this.resultBuff;
+    // Load the pixels from our buffer, save, and callback
+    var actualImageBuffer = this.resultBuff;
     var that = this;
-    getPixels(actualPixelsBuff, encoding, function saveActualPixels (err, pixels) {
+    getPixels(actualImageBuffer, encoding, function saveActualPixels (err, pixels) {
       that.actualPixels = pixels.data;
       done(err);
     });
