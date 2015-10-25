@@ -1,6 +1,7 @@
 // Load in dependencies
 var assert = require('assert');
 var fs = require('fs');
+var concat = require('concat-stream');
 var getPixels = require('get-pixels');
 
 // Define our utility functions
@@ -87,9 +88,9 @@ exports.debugResult = function (filepath) {
 exports.loadActualPixels = function (encoding) {
   before(function loadActualPixelsFn (done) {
     // Convert the stream into a buffer
+    var that = this;
     this.result.pipe(concat(function handleConcatStream (actualImageBuffer) {
       // Load the pixels, save, and callback
-      var that = this;
       getPixels(actualImageBuffer, encoding, function saveActualPixels (err, pixels) {
         that.actualPixels = pixels.data;
         done(err);
