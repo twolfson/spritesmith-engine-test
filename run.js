@@ -108,6 +108,7 @@ function spritesmithEngineTest(params) {
           it('returns an image', function (done) {
             this.result.pipe(concat(function handleConcatStream (buff) {
               expect(buff).to.not.have.length(0);
+              done();
             }));
           });
         });
