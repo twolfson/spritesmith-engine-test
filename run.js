@@ -106,9 +106,9 @@ function spritesmithEngineTest(params) {
             // Would have thrown
           });
           it('returns an image', function (done) {
-            concat(this.result, function handleConcatStream (buff) {
+            this.result.pipe(concat(function handleConcatStream (buff) {
               expect(buff).to.have.length(0);
-            });
+            }));
           });
         });
       });

@@ -77,22 +77,24 @@ exports.renderCanvas = function (options) {
 
 exports.debugResult = function (filepath) {
   before(function writeDebugImage (done) {
-    fs.writeFile(filepath || 'debug.png', this.result, 'binary', done);
+    var outStream = fs.createWriteStream(filepath || 'debug.png');
+    this.result.pipe(outStream);
+    outStream.on('error', done);
+    outStream.on('close', done);
   });
 };
 
 exports.loadActualPixels = function (encoding) {
   before(function loadActualPixelsFn (done) {
-    // Convert the binary string into a buffer
-    var actualImage = this.result;
-    var actualImageBuffer = new Buffer(actualImage, 'binary');
-
-    // Load the pixels, save, and callback
-    var that = this;
-    getPixels(actualImageBuffer, encoding, function saveActualPixels (err, pixels) {
-      that.actualPixels = pixels.data;
-      done(err);
-    });
+    // Convert the stream into a buffer
+    this.result.pipe(concat(function handleConcatStream (actualImageBuffer) {
+      // Load the pixels, save, and callback
+      var that = this;
+      getPixels(actualImageBuffer, encoding, function saveActualPixels (err, pixels) {
+        that.actualPixels = pixels.data;
+        done(err);
+      });
+    }));
   });
   after(function cleanupActualPixels () {
     delete this.actualPixels;
