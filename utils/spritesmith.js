@@ -85,17 +85,28 @@ exports.debugResult = function (filepath) {
   });
 };
 
+exports.concatResultStream = function () {
+  before(function concatResultStreamFn (done) {
+    var that = this;
+    this.result.pipe(concat(function handleConcatStream (resultBuff) {
+      that.resultBuff = resultBuff;
+      done();
+    }));
+  });
+  after(function cleanup () {
+    delete this.resultBuff;
+  });
+};
+
 exports.loadActualPixels = function (encoding) {
   before(function loadActualPixelsFn (done) {
-    // Convert the stream into a buffer
+    // Load the pixels, save, and callback
+    var actualPixelsBuff = this.resultBuff;
     var that = this;
-    this.result.pipe(concat(function handleConcatStream (actualImageBuffer) {
-      // Load the pixels, save, and callback
-      getPixels(actualImageBuffer, encoding, function saveActualPixels (err, pixels) {
-        that.actualPixels = pixels.data;
-        done(err);
-      });
-    }));
+    getPixels(actualPixelsBuff, encoding, function saveActualPixels (err, pixels) {
+      that.actualPixels = pixels.data;
+      done(err);
+    });
   });
   after(function cleanupActualPixels () {
     delete this.actualPixels;
