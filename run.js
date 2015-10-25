@@ -1,6 +1,5 @@
 // Load in dependencies
 var assert = require('assert');
-var concat = require('concat-stream');
 var expect = require('chai').expect;
 var config = require('./config');
 var spritesmithUtils = require('./utils/spritesmith');
@@ -101,15 +100,13 @@ function spritesmithEngineTest(params) {
               format: 'png'
             }
           });
+          spritesmithUtils.concatResultStream();
 
           it('does not crash', function () {
             // Would have thrown
           });
-          it('returns an image', function (done) {
-            this.result.pipe(concat(function handleConcatStream (buff) {
-              expect(buff).to.not.have.length(0);
-              done();
-            }));
+          it('returns an image', function () {
+            expect(this.resultBuffer).to.not.have.length(0);
           });
         });
       });

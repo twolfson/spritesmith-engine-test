@@ -88,13 +88,13 @@ exports.debugResult = function (filepath) {
 exports.concatResultStream = function () {
   before(function concatResultStreamFn (done) {
     var that = this;
-    this.result.pipe(concat(function handleConcatStream (resultBuff) {
-      that.resultBuff = resultBuff;
+    this.result.pipe(concat(function handleConcatStream (resultBuffer) {
+      that.resultBuffer = resultBuffer;
       done();
     }));
   });
   after(function cleanup () {
-    delete this.resultBuff;
+    delete this.resultBuffer;
   });
 };
 
@@ -102,7 +102,7 @@ exports.loadActualPixels = function (encoding) {
   exports.concatResultStream();
   before(function loadActualPixelsFn (done) {
     // Load the pixels from our buffer, save, and callback
-    var actualImageBuffer = this.resultBuff;
+    var actualImageBuffer = this.resultBuffer;
     var that = this;
     getPixels(actualImageBuffer, encoding, function saveActualPixels (err, pixels) {
       that.actualPixels = pixels.data;
