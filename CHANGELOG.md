@@ -1,4 +1,6 @@
 # spritesmith-engine-test
+2.1.2 - Added `twolfson-style` for linting
+
 2.1.1 - Added `foundry` for release
 
 2.1.0 - Fixed hardcoded values for exporting and debugging
