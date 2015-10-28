@@ -16,7 +16,8 @@ function spritesmithEngineTest(params) {
   assert(params, '`params` was not provided to `spritesmith-engine-test`');
   var engine = params.engine;
   assert(engine, '`params.engine` was not provided to `spritesmith-engine-test`');
-  assert(params.engineName, '`params.engineName` was not provided to `spritesmith-engine-test`, please provide one (e.g. \'phantomjssmith\')');
+  assert(params.engineName, '`params.engineName` was not provided to `spritesmith-engine-test`, ' +
+    'please provide one (e.g. \'phantomjssmith\')');
   var testOptions = params.options || {};
 
   // Define our tests
@@ -70,9 +71,9 @@ function spritesmithEngineTest(params) {
           // Compare pixels
           var i = 0;
           var len = actualPixels.length;
-          assert.notEqual(len, undefined, 'Expected `len` to not be `undefined` what it was');
-          assert.notEqual(actualPixels[0], undefined, 'Expected `actualPixels[0]` to not be `undefined` what it was');
-          assert.notEqual(expectedPixels[0], undefined, 'Expected `expectedPixels[0]` to not be `undefined` what it was');
+          assert.notEqual(len, undefined, 'Expected `len` to not be `undefined`');
+          assert.notEqual(actualPixels[0], undefined, 'Expected `actualPixels[0]` to not be `undefined`');
+          assert.notEqual(expectedPixels[0], undefined, 'Expected `expectedPixels[0]` to not be `undefined`');
           for (; i < len; i++) {
             // If the pixels did not match, complain and throw
             var pixelsWithinThreshold = Math.abs(expectedPixels[i] - actualPixels[i]) <= 10;
