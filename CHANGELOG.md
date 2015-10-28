@@ -1,4 +1,6 @@
 # spritesmith-engine-test
+2.1.1 - Added `foundry` for release
+
 2.1.0 - Fixed hardcoded values for exporting and debugging
 
 2.0.1 - Fixed mistake with pixel assertions
