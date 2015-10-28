@@ -1,4 +1,4 @@
-# spritesmith-engine-test [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
+# spritesmith-engine-test
 
 Common test suite and specification for all [spritesmith][] engines
 
@@ -103,6 +103,14 @@ $ mocha
 #      ✓ gathers statistics on an image file
 #  ...
 ```
+
+## Donating
+Support this project and [others by twolfson][gratipay] via [gratipay][].
+
+[![Support via Gratipay][gratipay-badge]][gratipay]
+
+[gratipay-badge]: https://cdn.rawgit.com/gratipay/gratipay-badge/2.x.x/dist/gratipay.png
+[gratipay]: https://www.gratipay.com/twolfson/
 
 ## License
 Copyright (c) 2013-2014 Todd Wolfson
