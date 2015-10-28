@@ -1,4 +1,4 @@
-# spritesmith-engine-test
+# spritesmith-engine-test [![Build status](https://travis-ci.org/twolfson/spritesmith-engine-test.png?branch=master)](https://travis-ci.org/twolfson/spritesmith-engine-test)
 
 Common test suite and specification for all [spritesmith][] engines
 
