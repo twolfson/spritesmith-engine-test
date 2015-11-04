@@ -32,7 +32,7 @@ var myengine = require('../lib/engine');
 // DEV: This loads and define multiple `mocha` test suites
 spritesmithEngineTest.run({
   engine: myengine,
-  engineName: 'myengine'
+  engineName: 'myengine',
 });
 ```
 
@@ -49,6 +49,30 @@ npm install mocha
 #      ✓ gathers statistics on an image file
 #  ...
 ```
+
+## Documentation
+```js
+spritesmithEngineTest.run({
+  engine: myengine,
+  engineName: 'myengine',
+  // Enable/disable certain tests
+  tests: {
+
+  }
+});
+
+spritesmithEngineTest.run({
+  engine: myengine,
+  engineName: 'myengine',
+  // Default: png, jpg, gif
+  imageTypes: {
+    png: true,
+    jpg: false,
+    gif: false
+  }
+});
+```
+
 
 ## Donating
 Support this project and [others by twolfson][gratipay] via [gratipay][].
