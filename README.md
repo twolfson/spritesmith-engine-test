@@ -32,7 +32,7 @@ var myengine = require('../lib/engine');
 // DEV: This loads and define multiple `mocha` test suites
 spritesmithEngineTest.run({
   engine: myengine,
-  engineName: 'myengine',
+  engineName: 'myengine'
 });
 ```
 
@@ -51,20 +51,57 @@ npm install mocha
 ```
 
 ## Documentation
+`spritesmith-engine-test` exports the following keys its `module.exports`:
+
+- config `Object` - Assortment of configurations used for each test suite
+    - See [lib/config.js](lib/config.js) for documentation
+    - Feel free to reuse these in any of your one-off tests
+- run `Function` - Test suite runner
+    - Documentation cane be found below
+- spritesmithUtils `Object` - One-off utilities for our test [mocha][] suites
+    - See [lib/utils/](lib/utils/) for documentation
+    - Feel free to reuse these in any of your one-off tests
+
+### `run(params)`
+Generates a set of [mocha][] test suites for a `spritesmith` engine
+
+- params `Object` - Container for test setup
+    - engine `Object` - `spritesmith` engine as defined by [spritesmith-engine-spec][]
+    - engineName `String` - Name of engine to use in test suites
+    - tests `Object` - Optional overrides to enable/disable tests
+        - By default, all tests will run
+        - Signature should be `testName: boolean` (e.g. `{interpretPngImage: false}`)
+        - A list of tests can be found below
+
+**Example with `tests`:**
+
 ```js
 spritesmithEngineTest.run({
   engine: myengine,
   engineName: 'myengine',
-  // Enable/disable certain tests
+  // Skip over rendering a GIF image
   tests: {
-    interpretImage: false,
-    renderCanvas: false,
-    interpretManyImages: false,
-    interpretLargeImage: false
+    renderGifCanvas: false
   }
 });
 ```
 
+[spritesmith-engine-spec]: https://github.com/twolfson/spritesmith-engine-spec
+
+### Tests
+Our test suite has the following tests built into it:
+
+- interpretPngImage - Loads a PNG image and asserts we get the correct height/width
+- interpretJpgImage - Same as `interpretPngImage` but for a JPG
+- interpretGifImage - Same as `interpretPngImage` but for a GIF
+- renderPngCanvas - Loads a PNG image, renders it via the `export`, and asserts the image is more/less the same
+- renderJpgCanvas - Same as `renderPngCanvas` but for a JPG
+- renderGifCanvas - Same as `renderPngCanvas` but for a GIF
+- renderMultiplePngImages - Load multiple images, place them at different spots on a canvas, and verify the placements are respected
+- renderManyPngImages - Load 500 images and render them on a canvas
+    - This is to verify each engine can handle a signficant amount of images
+- interpretLargePngImage - Load an 800x600 image and assert we get the correct height/width
+    - This is part of a regression we encountered in `phantomjssmith`
 
 ## Donating
 Support this project and [others by twolfson][gratipay] via [gratipay][].
