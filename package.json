@@ -1,6 +1,6 @@
 {
   "name": "spritesmith-engine-test",
-  "description": "Common test files for all Spritesmith engines",
+  "description": "Common test suite for spritesmith engines",
   "version": "2.1.3",
   "homepage": "https://github.com/twolfson/spritesmith-engine-test",
   "author": {
