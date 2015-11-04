@@ -63,16 +63,6 @@ spritesmithEngineTest.run({
     interpretLargeImage: false
   }
 });
-
-spritesmithEngineTest.run({
-  engine: myengine,
-  engineName: 'myengine',
-  inputImages: {
-    png: true,
-    jpg: false,
-    gif: false
-  }
-});
 ```
 
 
