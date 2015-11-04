@@ -1,4 +1,6 @@
 # spritesmith-engine-test
+3.0.0 - Refactored to allow enabling/disabling of single tests and expanded image tests
+
 2.1.4 - Replaced specification content with link to `spritesmith-engine-spec`
 
 2.1.3 - Added Travis CI
