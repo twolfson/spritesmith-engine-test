@@ -1,4 +1,6 @@
 # spritesmith-engine-test
+2.1.4 - Replaced specification content with link to `spritesmith-engine-spec`
+
 2.1.3 - Added Travis CI
 
 2.1.2 - Added `twolfson-style` for linting
