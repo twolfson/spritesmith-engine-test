@@ -57,15 +57,17 @@ spritesmithEngineTest.run({
   engineName: 'myengine',
   // Enable/disable certain tests
   tests: {
-
+    interpretImage: false,
+    renderCanvas: false,
+    interpretManyImages: false,
+    interpretLargeImage: false
   }
 });
 
 spritesmithEngineTest.run({
   engine: myengine,
   engineName: 'myengine',
-  // Default: png, jpg, gif
-  imageTypes: {
+  inputImages: {
     png: true,
     jpg: false,
     gif: false
