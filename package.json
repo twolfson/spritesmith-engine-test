@@ -21,7 +21,7 @@
       "url": "https://github.com/twolfson/spritesmith-engine-test/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "index",
+  "main": "lib/index.js",
   "engines": {
     "node": ">= 0.10.0"
   },
