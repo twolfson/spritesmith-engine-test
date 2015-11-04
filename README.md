@@ -1,8 +1,8 @@
 # spritesmith-engine-test [![Build status](https://travis-ci.org/twolfson/spritesmith-engine-test.png?branch=master)](https://travis-ci.org/twolfson/spritesmith-engine-test)
 
-Common test suite [spritesmith][] engines
+Common test suite for [spritesmith][] engines
 
-These files were written for usage with [mocha][].
+These files were written for usage with [mocha][]
 
 [spritesmith]: https://github.com/Ensighten/spritesmith
 [mocha]: https://github.com/visionmedia/mocha
