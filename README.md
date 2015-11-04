@@ -43,7 +43,7 @@ Run your tests via `mocha`:
 npm install mocha
 
 # Run mocha test suite
-./node_modules/.bin/mocha
+./node_modules/.bin/mocha test/
 #  myengine
 #    interpretting an image file
 #      ✓ gathers statistics on an image file
