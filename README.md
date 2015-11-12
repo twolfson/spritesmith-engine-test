@@ -10,11 +10,11 @@ These files were written for usage with [mocha][]
 ## Specification version
 The current repository version is built to match specification version:
 
-**1.1.0**
+**2.0.0**
 
 Specification documentation can be found at:
 
-https://github.com/twolfson/spritesmith-engine-spec/tree/1.1.0
+https://github.com/twolfson/spritesmith-engine-spec/tree/2.0.0
 
 ## Getting started
 Install the module via: `npm install spritesmith-engine-test`
@@ -26,12 +26,12 @@ Create files that require and run the test suite:
 ```js
 // Load in dependencies
 var spritesmithEngineTest = require('spritesmith-engine-test');
-var myengine = require('../lib/engine');
+var MyEngine = require('../lib/engine');
 
 // Run our test suite
 // DEV: This loads and define multiple `mocha` test suites
 spritesmithEngineTest.run({
-  engine: myengine,
+  engine: MyEngine,
   engineName: 'myengine'
 });
 ```
@@ -68,6 +68,7 @@ Generates a set of [mocha][] test suites for a `spritesmith` engine
 - params `Object` - Container for test setup
     - engine `Object` - `spritesmith` engine as defined by [spritesmith-engine-spec][]
     - engineName `String` - Name of engine to use in test suites
+    - engineOptions `Object` - Optional options to pass to `engine` constructor
     - tests `Object` - Optional overrides to enable/disable tests
         - By default, all tests will run
         - Signature should be `testName: boolean` (e.g. `{interpretPngImage: false}`)
