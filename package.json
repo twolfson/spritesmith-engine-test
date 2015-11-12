@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "chai": "~1.5.0",
-    "get-pixels": "twolfson/get-pixels#0e9e7e2",
+    "get-pixels": "~3.2.3",
     "obj-extend": "~0.1.0",
     "semver": "~5.0.3"
   },
