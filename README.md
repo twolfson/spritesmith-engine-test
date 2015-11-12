@@ -10,11 +10,11 @@ These files were written for usage with [mocha][]
 ## Specification version
 The current repository version is built to match specification version:
 
-**1.0.0**
+**1.1.0**
 
 Specification documentation can be found at:
 
-https://github.com/twolfson/spritesmith-engine-spec/tree/1.0.0
+https://github.com/twolfson/spritesmith-engine-spec/tree/1.1.0
 
 ## Getting started
 Install the module via: `npm install spritesmith-engine-test`
