@@ -33,7 +33,8 @@
   "dependencies": {
     "chai": "~1.5.0",
     "get-pixels": "twolfson/get-pixels#0e9e7e2",
-    "obj-extend": "~0.1.0"
+    "obj-extend": "~0.1.0",
+    "semver": "~5.0.3"
   },
   "devDependencies": {
     "foundry": "~4.3.2",
