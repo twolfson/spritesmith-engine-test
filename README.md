@@ -91,6 +91,7 @@ spritesmithEngineTest.run({
 ### Tests
 Our test suite has the following tests built into it:
 
+- assertSpecVersion - Verify the engine has a `specVersion` for the corresponding specification
 - interpretPngImage - Loads a PNG image and asserts we get the correct height/width
 - interpretJpgImage - Same as `interpretPngImage` but for a JPG
 - interpretGifImage - Same as `interpretPngImage` but for a GIF
