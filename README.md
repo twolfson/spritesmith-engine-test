@@ -99,6 +99,9 @@ Our test suite has the following tests built into it:
 - renderPngCanvas - Loads a PNG image, renders it via the `export`, and asserts the image is more/less the same
 - renderJpgCanvas - Same as `renderPngCanvas` but for a JPG
 - renderGifCanvas - Same as `renderPngCanvas` but for a GIF
+- renderPngBufferVinylCanvas - Same as `renderPngCanvas` but uses a buffer-based Vinyl object instead of a filepath
+- renderPngStreamVinylCanvas - Same as `renderPngCanvas` but uses a stream-based Vinyl object instead of a filepath
+- renderPngNullVinylCanvas - Same as `renderPngCanvas` but uses a null-based Vinyl object instead of a filepath
 - renderMultiplePngImages - Load multiple images, place them at different spots on a canvas, and verify the placements are respected
 - renderManyPngImages - Load 500 images and render them on a canvas
     - This is to verify each engine can handle a signficant amount of images
