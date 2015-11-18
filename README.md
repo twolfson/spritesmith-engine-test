@@ -94,7 +94,8 @@ Our test suite has the following tests built into it:
 
 - assertSpecVersion - Verify the engine has a `specVersion` for the corresponding specification
 - interpretPngImage - Loads a PNG image and asserts we get the correct height/width
-- interpretJpgImage - Same as `interpretPngImage` but for a JPG
+- interpretJpegImage - Same as `interpretPngImage` but for a JPEG  (using `format: 'jpeg'`)
+- interpretJpgImage - Same as `interpretPngImage` but for a JPEG (using `format: 'jpg'`)
 - interpretGifImage - Same as `interpretPngImage` but for a GIF
 - renderPngCanvas - Loads a PNG image, renders it via the `export`, and asserts the image is more/less the same
 - renderJpgCanvas - Same as `renderPngCanvas` but for a JPG
