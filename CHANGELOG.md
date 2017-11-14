@@ -1,4 +1,6 @@
 # spritesmith-engine-test
+4.0.1 - Replaced Gratipay with support me page
+
 4.0.0 - Added support for `spritesmith-engine-spec@2.0.0`
 
 3.1.0 - Added assertion for `specVersion`
