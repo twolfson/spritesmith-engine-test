@@ -110,12 +110,12 @@ Our test suite has the following tests built into it:
     - This is part of a regression we encountered in `phantomjssmith`
 
 ## Donating
-Support this project and [others by twolfson][gratipay] via [gratipay][].
+Support this project and [others by twolfson][twolfson-projects] via [donations][twolfson-support-me].
 
-[![Support via Gratipay][gratipay-badge]][gratipay]
+<http://twolfson.com/support-me>
 
-[gratipay-badge]: https://cdn.rawgit.com/gratipay/gratipay-badge/2.x.x/dist/gratipay.png
-[gratipay]: https://www.gratipay.com/twolfson/
+[twolfson-projects]: http://twolfson.com/projects
+[twolfson-support-me]: http://twolfson.com/support-me
 
 ## License
 Copyright (c) 2013-2014 Todd Wolfson
