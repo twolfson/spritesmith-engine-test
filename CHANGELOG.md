@@ -1,4 +1,6 @@
 # spritesmith-engine-test
+5.0.0 - Upgraded to Vinyl@2 to support Gulp@4
+
 4.0.1 - Replaced Gratipay with support me page
 
 4.0.0 - Added support for `spritesmith-engine-spec@2.0.0`
