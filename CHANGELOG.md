@@ -1,4 +1,6 @@
 # spritesmith-engine-test
+5.1.1 - Updated dependencies to fix vulnerabilities, via @striezel in #3
+
 5.1.0 - Moved to Node.js>=14 to fix Travis CI
 
 5.0.1 - Moved to Node.js>=4 to fix Travis CI
